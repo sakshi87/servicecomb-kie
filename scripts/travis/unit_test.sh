@@ -21,13 +21,13 @@ echo "mode: atomic" > coverage.txt
 go clean -testcache
 #Start the Test
 for d in $(go list ./... | grep -v vendor |  grep -v third_party | grep -v examples); do
-    echo $d
+    echo github.com/sakshi87/servicecomb-kie/cmd/kieserver
     echo $GOPATH
-    cd $GOPATH/src/$d
+    cd $GOPATH/src/github.com/apache/servicecomb-kie/cmd/kieserver
     if [ $(ls | grep _test.go | wc -l) -gt 0 ]; then
         go test -v -cover -covermode atomic -coverprofile coverage.out
         if [ -f coverage.out ]; then
-            sed '1d;$d' coverage.out >> $GOPATH/src/github.com/apache/servicecomb-kie/coverage.txt
+            sed '1d;$d' coverage.out >> $GOPATH/src/github.com/sakshi87/servicecomb-kie/coverage.txt
         fi
     fi
 done
